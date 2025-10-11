@@ -30,10 +30,10 @@ The backend does all the logic and computation, while the frontend focuses on cl
 
 ### Software Diagram
 
-![Architecture Diagram](architecture_diagram.png)
+![Architecture Diagram](architecture_diagram.jpg)
 
 ### FrontEnd Interface
-![Application Interface](interface.png)
+![Application Interface](interface.jpg)
 
 ###  Technologies we used
 
