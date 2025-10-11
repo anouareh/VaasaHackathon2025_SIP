@@ -51,6 +51,7 @@ The backend does all the logic and computation, while the frontend focuses on cl
 *Input CSV*
 
 csv
+
 activity,quantity,unit
 Electricity consumption, 2000, kWh
 Diesel used in transport, 150, L
