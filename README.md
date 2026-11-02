@@ -1,58 +1,54 @@
 # Sustainability Intelligence Platform (SIP)
-### JunctionX Vaasa 2025 – Wärtsilä Challenge  
-*Team Fibers:* Bilal Moussaoui El Azrak · Xinshen Xiang Chen · Pau López Pujals · Anouar El Haddadi El Yahyati  
+
+Web platform that turns a company's activity data into sustainability metrics
+following the ESRS environmental standards (E1 to E5).
+
+> JunctionX Vaasa 2025 · Wärtsilä Challenge · Team Fibers: Bilal Moussaoui El Azrak,
+> Xinshen Xiang Chen, Pau López Pujals, Anouar El Haddadi El Yahyati
 
 ## About the project
 
-*SIP (Sustainability Intelligence Platform)* is a web application we built during *JunctionX Vaasa 2025, under the **Wärtsilä Challenge*.  
-Our goal was simple: make sustainability reporting less painful and more meaningful for companies.
+Companies collect a lot of environmental data (energy, fuel, materials) but
+struggle to turn it into the reports the EU sustainability standards (ESRS)
+require. SIP takes a CSV of a company's activities and calculates its CO₂ and
+eco costs automatically, split into the five ESRS environmental categories:
+climate change (E1), pollution (E2), water (E3), biodiversity (E4) and
+resource use (E5).
 
-Today, many businesses collect tons of environmental data — energy use, logistics, materials — but struggle to turn it into something useful. We wanted to change that.  
-SIP takes raw activity data and automatically generates insights about carbon footprint, eco-costs, and ESG classifications, following the official *ESRS environmental standards (E1–E5)*.
+## Demo
 
-It’s fast, transparent, and designed to make sustainability measurable.
+Walkthrough of the platform: uploading a CSV and exploring the results.
 
-<br>
+[![Demo video](https://i.ytimg.com/vi/pj1axi1YByM/hqdefault.jpg)](https://www.youtube.com/watch?v=pj1axi1YByM)
 
 ## What it does
 
-- *Uploads your data:* You can drop a CSV file with your company’s activities (e.g. energy use, fuel, materials).  
-- *Understands it:* The system parses and maps everything to pollutants and impact categories.  
-- *Thinks for you:* A small AI model classifies each activity under ESRS standards.  
-- *Shows results clearly:* The web dashboard displays carbon emissions, eco-costs, and compliance indicators — all in one place.
+1. The user uploads a CSV with the company's activities.
+2. Each activity is matched to the closest process in the Idemat 2025 database.
+   A fuzzy search shortlists candidates and an LLM picks the best match.
+3. The platform calculates CO₂ and eco costs per activity, split into E1 to E5.
+4. Results are stored in PostgreSQL and shown in a Grafana dashboard.
 
-The goal was not just to make a report generator, but a real assistant for sustainability teams.
-
-<br>
+![Application interface](interface.jpg)
 
 ## Architecture
-The backend does all the logic and computation, while the frontend focuses on clarity and real-time feedback.
 
-### Software Diagram
+<img src="architecture.png" alt="Architecture diagram" width="560">
 
-![Architecture Diagram](architecture_diagram.jpg)
+## Tech stack
 
-### FrontEnd Interface
-![Application Interface](interface.jpg)
+* **Backend:** Python, Django
+* **Database:** PostgreSQL
+* **Data and AI:** Pandas, difflib, Mistral 7B (OpenRouter)
+* **Dashboards:** Grafana
+* **Frontend:** Django templates, Tailwind CSS, JavaScript
+* **Standards:** ESRS E1 to E5, Idemat 2025 eco costs
 
-###  Technologies we used
+## Example input
 
-| Area | Stack |
-|------|-------|
-| Frontend | React, TypeScript, TailwindCSS |
-| Backend | Python, Django, Django REST Framework |
-| AI & Data | Pandas, NumPy, Scikit-learn |
-| Tools | Docker, Git, VS Code |
-| Standards | ESRS (E1–E5), CO₂ equivalency tables |
-
-
-###  How it works (example)
-
-*Input CSV*
-
-csv
-
+```csv
 activity,quantity,unit
-Electricity consumption, 2000, kWh
-Diesel used in transport, 150, L
-Plastic packaging, 50, kg
+Electricity consumption,2000,kWh
+Diesel used in transport,150,L
+Plastic packaging,50,kg
+```
